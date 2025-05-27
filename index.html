@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carta 3D</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #fafafa;
+        font-family: sans-serif;
+      }
+
+      #viewer-container {
+        width: 100%;
+        height: 100%;
+        display: none; /* oculto por defecto */
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 100%;
+      }
+
+      button {
+        padding: 12px 24px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Ver plato en 3D</h2>
+    <button onclick="mostrarModelo()">Ver en mi mesa</button>
+
+    <div id="viewer-container">
+      <model-viewer 
+        id="modelo"
+        src="models/SpicyChickenThighs.glb"
+        ar 
+        ar-modes="scene-viewer webxr quick-look" 
+        environment-image="neutral" 
+        auto-rotate 
+        camera-controls 
+        ios-src="models/SpicyChickenThighs.usdz">
+      </model-viewer>
+    </div>
+
+    <script>
+      function mostrarModelo() {
+        const contenedor = document.getElementById('viewer-container');
+        const modelViewer = document.getElementById('modelo');
+
+        contenedor.style.display = 'block';
+
+        // Esperamos que cargue el <model-viewer> y forzamos el AR
+        modelViewer.activateAR();
+      }
+    </script>
+  </body>
+</html>
